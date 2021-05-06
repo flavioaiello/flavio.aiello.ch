@@ -1,0 +1,1 @@
+About 11 months ago I started a project which developed directly against podman. This presented a problem which I'd not really encountered before - Docker and Kubernetes on my Mac were no longer enough, I needed a Linux environment.

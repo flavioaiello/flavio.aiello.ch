@@ -1,4 +1,4 @@
-### Hi there - this is Me 👋
+### Hi there - this is me 👋
 
 - 🔭 I’m currently working on too many things
 - 💬 Ask me about nothing 

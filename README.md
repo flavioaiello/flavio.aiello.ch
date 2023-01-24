@@ -5,4 +5,4 @@
 - 📫 How to reach me: you don't 
 - 😄 Pronouns: he/him 
 - ⚡ Fun fact: I once won a staring contest against a wall, it was intense
-- 💰 Become a [sponsor on GitHub](https://github.com/sponsors/flavioaiello) and help me conquer more walls!
+- 💰 Supporting my procrastination and caffeine habits: Become a [sponsor on GitHub](https://github.com/sponsors/flavioaiello) and help me conquer more walls!

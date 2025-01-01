@@ -195,6 +195,7 @@ plugins:
   - jekyll-sitemap
   - jekyll-paginate
   - jekyll-seo-tag
+  - jekyll-include-cache
 
 # mimic GitHub Pages with --safe
 whitelist:
@@ -202,6 +203,7 @@ whitelist:
   - jekyll-sitemap
   - jekyll-paginate
   - jekyll-seo-tag
+  - jekyll-include-cache
   
 # Archives
 #  Type

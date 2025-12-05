@@ -1,4 +1,4 @@
-# **Beemesh: From Vision to Reality - A Decentralized Fabric for Global Computing**
+# **From Vision to Reality - A Decentralized Fabric for Global Computing**
 
 In 2020, I published a short article on my blog titled simply **“Beemesh.”**
 It outlined a vision: a global, decentralized, zero-trust compute fabric that could run anywhere - cloud, edge, on-prem, or IoT - without the brittleness and bureaucracy of centralized control planes. I described how such a system could use peer-to-peer discovery, identity separation, and self-healing workloads to scale far beyond what Kubernetes- or cluster-centric designs allowed.

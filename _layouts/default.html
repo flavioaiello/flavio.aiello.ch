@@ -1,43 +1,55 @@
----
----
-
-<!doctype html>
-<!--
-  Minimal Mistakes Jekyll Theme 4.19.3 by Michael Rose
-  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
-  Free for personal and commercial use under the MIT license
-  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
--->
-<html lang="{{ site.locale | slice: 0,2 | default: "en" }}" class="no-js">
-  <head>
-    {% seo %}
-    {% include head.html %}
-    {% include head/custom.html %}
-  </head>
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: 'en' }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  {% seo %}
   
-  <body class="layout--{{ page.layout | default: layout.layout }}{% if page.classes or layout.classes %}{{ page.classes | default: layout.classes | join: ' ' | prepend: ' ' }}{% endif %}">
-    {% include_cached skip-links.html %}
-    {% include_cached browser-upgrade.html %}
-    {% include_cached masthead.html %}
-
-    <div class="initial-content">
-      {{ content }}
-    </div>
-
-    {% if site.search == true %}
-      <div class="search-content">
-        {% include_cached search/search_form.html %}
-      </div>
+  <link rel="alternate" type="application/atom+xml" href="{{ '/feed.xml' | absolute_url }}" title="{{ site.title }}">
+  
+  {% if paginator %}
+    {% if paginator.previous_page %}
+      <link rel="prev" href="{% if paginator.previous_page == 1 %}{{ '/' | absolute_url }}{% else %}{{ paginator.previous_page_path | absolute_url }}{% endif %}">
     {% endif %}
+    {% if paginator.next_page %}
+      <link rel="next" href="{{ paginator.next_page_path | absolute_url }}">
+    {% endif %}
+    {% if paginator.page > 1 %}
+      <meta name="robots" content="noindex,follow">
+    {% endif %}
+  {% endif %}
 
-    <div id="footer" class="page__footer">
-      <footer>
-        {% include footer/custom.html %}
-        {% include_cached footer.html %}
-      </footer>
+  <link href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/lux/bootstrap.min.css" rel="stylesheet">
+  <link href="{{ '/assets/css/syntax.css' | relative_url }}" rel="stylesheet">
+</head>
+
+<body>
+  {% include navbar.html %}
+
+  <!-- Main Container with Sidebar -->
+  <div class="container">
+    <div class="row">
+      <!-- Left Sidebar -->
+      <nav class="col-lg-3 d-none d-lg-block py-4 position-sticky" style="top: 20px; height: fit-content;">
+        {% include sidebar.html %}
+      </nav>
+
+      <!-- Main Content -->
+      <main class="col-lg-9 py-4">
+        {{ content }}
+      </main>
     </div>
+  </div>
 
-    {% include scripts.html %}
+  {% include footer.html %}
 
-  </body>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <script>
+    // Add Bootstrap classes to Jekyll-generated elements
+    document.querySelectorAll('table').forEach(el => el.classList.add('table', 'table-hover'));
+    document.querySelectorAll('pre').forEach(el => el.classList.add('bg-light', 'p-3', 'rounded', 'border'));
+    document.querySelectorAll('blockquote').forEach(el => el.classList.add('blockquote', 'border-start', 'border-4', 'ps-3'));
+  </script>
+</body>
 </html>

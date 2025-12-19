@@ -6,7 +6,7 @@ Yet, in the midst of this, there's the pervasive act of "covering." People, espe
 
 But here's the thing: true learning and knowledge aren't about surface-level appearances. There's a misconception that wisdom can be acquired with a simple click or a quick scroll. But real understanding? It's a grind. It's hours, days, and years of dedication. It's diving deep into subjects, questioning, understanding, and sometimes even unlearning to relearn. It's not glamorous. It's often not Instagrammable.
 
-Will a few flashy moves or buzzwords will make the action heroes stand out? True leadership isn't about the spectacle. It's about the consistent, dedicated effort behind the scenes. It's about understanding humans, guiding them with wisdom, and making the tough decisions even when they're not popular. It's also about recognizing the value of all voices.
+Will a few flashy moves or buzzwords make the action heroes stand out? True leadership isn't about the spectacle. It's about the consistent, dedicated effort behind the scenes. It's about understanding humans, guiding them with wisdom, and making the tough decisions even when they're not popular. It's also about recognizing the value of all voices.
 
 True knowledge requires work, hard gritty work. It's not about skimming the surface, but about diving deep, immersing oneself in the vast ocean of information, and coming up with pearls of wisdom. And this process takes time. Time that doesn't allow for constant self-promotion or the need to showcase every minor achievement.
 

@@ -1,0 +1,39 @@
+---
+layout: default
+---
+
+<article>
+  <!-- Post Title -->
+  <header class="mb-4">
+    <h1 class="fw-bold">{{ page.title | default: content | split: '</h1>' | first | split: '>' | last | strip_html }}</h1>
+    <p class="text-muted">
+      <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %-d, %Y" }}</time>
+    </p>
+  </header>
+
+  <!-- Post Content -->
+  <div class="post-content">
+    {{ content }}
+  </div>
+
+  <!-- Navigation -->
+  <nav class="d-flex justify-content-between my-5 pt-4 border-top">
+    {% if page.previous.url %}
+      <a href="{{ page.previous.url | relative_url }}" class="text-decoration-none">&laquo; {{ page.previous.title | default: "Previous" | truncate: 30 }}</a>
+    {% else %}
+      <span></span>
+    {% endif %}
+    {% if page.next.url %}
+      <a href="{{ page.next.url | relative_url }}" class="text-decoration-none">{{ page.next.title | default: "Next" | truncate: 30 }} &raquo;</a>
+    {% else %}
+      <span></span>
+    {% endif %}
+  </nav>
+
+  <!-- Comments -->
+  {% if page.comments and site.disqus %}
+  <section id="comments" class="my-4">
+    {% include disqus.html %}
+  </section>
+  {% endif %}
+</article>

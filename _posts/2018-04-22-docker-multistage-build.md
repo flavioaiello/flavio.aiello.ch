@@ -1,13 +1,13 @@
 Building software sources and their according runtime containers are two different concerns. Docker introduced about one year ago the multistage build feature, improving vastly the developer experience. Multistage build leaves security keys and build specific packages behind and focuses on small and secure production runtime containers.
 
-How CI/CD systems handled their propiertary build approach becomes now also portable. Build reports can simply be exposed by mounting volumes to the build system workspace, thus offering the same level of usability as usual.
+How CI/CD systems handled their proprietary build approach becomes now also portable. Build reports can simply be exposed by mounting volumes to the build system workspace, thus offering the same level of usability as usual.
 
-## Examples
+#### Examples
 Below we see two different examples how to accomplish multistage building.
 
-### Java
+#### Java
 ```
-### Source build - the following "build" label is used in the runtime stage below
+#### Source build - the following "build" label is used in the runtime stage below
 FROM maven:3-jdk-8-alpine as build
 COPY build /build
 WORKDIR /build
@@ -15,9 +15,9 @@ RUN set -ex ;\
     echo "*** Build source ***" ;\
     mvn -B clean install
 
-### Runtime build
+#### Runtime build
 FROM alpine:3.7
-# Packages
+### Packages
 RUN set -ex ;\
     apk update ;\
     apk upgrade ;\
@@ -27,36 +27,36 @@ RUN set -ex ;\
     addgroup -S appuser ;\
     adduser -S -D -h /home/appuser -s /bin/false -G appuser -g "appuser system account" appuser ;\
     chown -R appuser /home/appuser
-# Copy build artefacts to runtime container image - "from build" means the stage above
+### Copy build artifacts to runtime container image - "from build" means the stage above
 COPY --from=build /build/app /usr/local/bin
-# Copy local files to runtime container image
+### Copy local files to runtime container image
 COPY files /
-# Default port exposure
+### Default port exposure
 EXPOSE 8080
-# Init and PID 1 execution
+### Init and PID 1 execution
 ENTRYPOINT ["entrypoint.sh"]
 CMD ["java","/usr/local/bin/myapp.jar"]
 ```
-### Golang
+#### Golang
 ```
-### Source build - the following "build" label is used in the runtime stage below
+#### Source build - the following "build" label is used in the runtime stage below
 FROM golang:1.10 as build
 COPY build /build
 WORKDIR /build
 RUN go get -d -v -t;\
     CGO_ENABLED=0 GOOS=linux go build -v -o /usr/local/bin/serve
 
-### Runtime build - based on empty base image without to switch user
+#### Runtime build - based on empty base image without to switch user
 FROM scratch
-# Copy build artefacts to runtime container image - "from build" means the stage above
+### Copy build artifacts to runtime container image - "from build" means the stage above
 COPY --from=build /usr/local/bin/serve /usr/local/bin/
-# Copy local files to runtime container image
+### Copy local files to runtime container image
 COPY files /
 WORKDIR /wwwroot
 EXPOSE 8080
 CMD ["/usr/local/bin/serve", "-p", "8080", "-d", "/wwwroot"]
 ```
-## Automation
+#### Automation
 When using the multistage build feature with Jenkins 2.x, the main concern of the Jenkinsfile in each repository remains the Dockerfile build.
 ```
 #!groovy

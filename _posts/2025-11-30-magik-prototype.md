@@ -1,4 +1,4 @@
-# **From Vision to Reality - The Digital Sovereignty Fabric**
+### From Vision to Reality - The Digital Sovereignty Fabric
 
 In 2020, I published a short article on my blog titled simply [**Beemesh**](https://flavio.aiello.ch/beemesh/).
 
@@ -11,7 +11,7 @@ The idea is still the same: a fully decentralized, cryptographically isolated, i
 
 ---
 
-# **The New Paradigm: Computing Without a Control Plane**
+### The New Paradigm: Computing Without a Control Plane
 
 For the past decade, infrastructure engineering has revolved around one gravity well: **the control plane**. From Kubernetes to Nomad and every orchestrator in between, the industry has optimized the *cluster* - but rarely questioned whether a cluster should exist at all.
 
@@ -37,15 +37,15 @@ No global API server dependency.
 
 Instead, Magik.run is a:
 
-### **Decentralized scale-out choreography fabric**
+#### Decentralized scale-out choreography fabric
 
 Nodes collaborate through secure peer-to-peer protocols, schedule work ephemerally, and recover from churn without relying on global state.
 
-### **Infrastructure without state**
+#### Infrastructure without state
 
 Machines are disposable. Their identity is ephemeral. They store no global truth.
 
-### **Workloads as sovereign units**
+#### Workloads as sovereign units
 
 Each workload carries its own state management, identity, and consistency boundaries.
 
@@ -53,7 +53,7 @@ This separation is the heart of Magik.run.
 
 ---
 
-# **Why Magik.run Exists**
+### Why Magik.run Exists
 
 Legacy orchestrators struggle with:
 
@@ -71,15 +71,15 @@ It’s a departure.
 
 ---
 
-# **The Core Architectural Idea: Two Planes, Two Concerns**
+### The Core Architectural Idea: Two Planes, Two Concerns
 
-## **1. The Machineplane - A/P (Availability + Partition Tolerance)**
+#### 1. The Machineplane - A/P (Availability + Partition Tolerance)
 
 Manages node discovery, scheduling, and resource negotiation.
 Stores no persistent state.
 100% disposable.
 
-## **2. The Workplane - C/P (Consistency + Partition Tolerance)**
+#### 2. The Workplane - C/P (Consistency + Partition Tolerance)
 
 Implements service discovery, workload connectivity, replica tracking, and optional Raft-based consistency for stateful sets.
 
@@ -90,21 +90,21 @@ This was implicit in the 2020 blog post; now it is formalized in code and protoc
 
 ---
 
-# **Security: Zero Trust, Native and Mandatory**
+### Security: Zero Trust, Native and Mandatory
 
 In 2020, I wrote about a mesh where **identity travels with the workload** and trust originates *inside* the application boundary.
 
 Magik.run fulfills that vision:
 
-### **Machine identities**
+#### Machine identities
 
 Each machine generates its own Ed25519 keypair for machine-to-machine communication.
 
-### **Workload identities**
+#### Workload identities
 
 Every workload has its own independent cryptographic identity.
 
-### **Mutually authenticated, encrypted streams by default**
+#### Mutually authenticated, encrypted streams by default
 
 All communication - both between machines and between workloads - uses mTLS over QUIC.
 
@@ -113,7 +113,7 @@ This is true Zero Trust, not the marketing variety.
 
 ---
 
-# **Ephemeral Scheduling: The Anti-Scheduler**
+### Ephemeral Scheduling: The Anti-Scheduler
 
 Traditional schedulers maintain global shared state and require consensus.
 Magik.run does neither.
@@ -137,7 +137,7 @@ The “global cluster view” required by Kubernetes simply isn’t needed here.
 
 ---
 
-# **The Workplane: A Decentralized Service Mesh Without Sidecars**
+### The Workplane: A Decentralized Service Mesh Without Sidecars
 
 Each pod runs a lightweight Workplane agent that provides:
 
@@ -153,7 +153,7 @@ For stateful workloads, the Workplane’s Raft implementation provides leader el
 
 ---
 
-# **How Magik.run Compares**
+### How Magik.run Compares
 
 | Feature          | Kubernetes       | Nomad        | **Magik.run**                |
 | ---------------- | ---------------- | ------------ | -------------------------- |
@@ -169,36 +169,36 @@ Magik.run doesn’t compete with Kubernetes or Nomad; it occupies a different ar
 
 ---
 
-# **Where Magik.run Truly Shines**
+### Where Magik.run Truly Shines
 
-### **Edge & IoT**
+#### Edge & IoT
 
 Expect churn. Expect partitions. Expect devices to vanish.
 Magik.run does not mind.
 
-### **Multicloud**
+#### Multicloud
 
 Run workloads across providers without control-plane coupling.
 
-### **Air-gapped environments**
+#### Air-gapped environments
 
 Magik.run operates fully offline - no registry, cluster, or external identity provider required.
 
-### **Global analytics & batch computing**
+#### Global analytics & batch computing
 
 Ephemeral scheduling naturally absorbs bursts.
 
-### **Stateful workloads**
+#### Stateful workloads
 
 State belongs to the workload, not to the cluster.
 
-### **Smart cities, telco, logistics**
+#### Smart cities, telco, logistics
 
 Millions of devices, unpredictable topology - ideal conditions for a decentralized fabric.
 
 ---
 
-# **From Prototype Promise to Reality - The Loop Closes**
+### From Prototype Promise to Reality - The Loop Closes
 
 When I wrote the initial Magik.run article in 2020, the technology required to realize the vision existed only in fragments.
 QUIC was still maturing; libp2p’s QUIC support was experimental; Rust’s async networking ecosystem was young.
@@ -214,7 +214,7 @@ The emerging 2024 implementation is the tree.
 
 ---
 
-# **Getting Started with Magik.run**
+### Getting Started with Magik.run
 
 ```bash
 git clone https://github.com/Magik.run/Magik.run.git
@@ -231,11 +231,11 @@ Then run the Workplane agent inside workloads and deploy manifests via the kubec
 
 ---
 
-# **Research Grounding & Related Work**
+### Research Grounding & Related Work
 
 Magik.run's architecture isn't theoretical speculation - it builds on decades of distributed systems research. Here's how the core design decisions map to established academic foundations.
 
-## **Decentralized Scheduling & Resource Markets**
+#### Decentralized Scheduling & Resource Markets
 
 The ephemeral tender → bid → award scheduling model draws from:
 
@@ -246,7 +246,7 @@ The ephemeral tender → bid → award scheduling model draws from:
 
 Kubernetes documents that production clusters are [practically limited to ~5,000 nodes](https://kubernetes.io/docs/setup/best-practices/cluster-large/) due to control-plane scalability. Magik's premise - "scale is limited by the control plane, so remove it" - is a logical extension.
 
-## **DHTs, Pub/Sub Overlays & Gossip**
+#### DHTs, Pub/Sub Overlays & Gossip
 
 The Machine DHT and Workload DHT for decentralized discovery build on:
 
@@ -256,7 +256,7 @@ The Machine DHT and Workload DHT for decentralized discovery build on:
 * **SWIM** - scalable, weakly-consistent infection-style membership protocol. [Paper](https://www.cs.cornell.edu/projects/Quicksilver/public_pdfs/SWIM.pdf)
 * **Gossip-Style Failure Detection** (Van Renesse et al.) - epidemic dissemination for membership and failure detection. [Paper](https://www.cs.cornell.edu/home/rvr/papers/GossipFD.pdf)
 
-## **CAP-Aware Design & Per-Workload State**
+#### CAP-Aware Design & Per-Workload State
 
 The A/P Machineplane + C/P Workplane separation is grounded in:
 
@@ -268,7 +268,7 @@ The A/P Machineplane + C/P Workplane separation is grounded in:
 
 Magik generalizes this pattern: every stateful workload is its own Dynamo/Bayou/Coda-style system; the fabric never pretends to maintain a globally consistent view.
 
-## **Zero Trust & Workload Identity**
+#### Zero Trust & Workload Identity
 
 The separate machine/workload identity model implements:
 
@@ -278,7 +278,7 @@ The separate machine/workload identity model implements:
 
 Magik bakes SPIFFE-like workload identity into the fabric while distinguishing machine IDs from workload IDs and making mTLS mandatory, not optional.
 
-## **Edge, IoT & Fog Computing**
+#### Edge, IoT & Fog Computing
 
 The stateless, transient machine model addresses:
 
@@ -286,14 +286,14 @@ The stateless, transient machine model addresses:
 * **Resource Management in Fog/Edge Computing** (ACM CSUR 2019) - surveys emphasizing heterogeneity, resource constraints, and decentralized management. [Paper](https://pureadmin.qub.ac.uk/ws/files/168704756/Fog_EdgeResourceManagement_Survey_CSUR_2019.pdf)
 * **Dependability in Fog Computing** - challenges of failures, partitions, and placement strategies for distributed IoT. [Paper](https://www.science-gate.com/IJAAS/Articles/2021/2021-8-4/1021833ijaas202104010.pdf)
 
-## **Self-Healing & Autonomic Systems**
+#### Self-Healing & Autonomic Systems
 
 The Workplane's autonomous remediation implements:
 
 * **The Vision of Autonomic Computing** (Kephart & Chess, IEEE 2003) - defines self-configuration, self-optimization, self-protection, and self-healing as core system goals. [Paper](https://www.researchgate.net/publication/2955831_The_Vision_Of_Autonomic_Computing)
 * **Autonomic Computing Surveys** - runtime monitoring, local fault detection, and automated recovery with minimal operator involvement. [Paper](https://www.cs.colostate.edu/~france/CS614/Readings/Readings2008/AdaptiveSoftware/a7-huebscher-autonomicSysSurvey.pdf)
 
-## **What's Novel**
+#### What's Novel
 
 Every piece of Magik has strong backing in prior work. What appears novel is the *combination*:
 
@@ -306,7 +306,7 @@ These choices don't contradict the literature; they combine its building blocks 
 
 ---
 
-# **Closing Thoughts: Beyond Clusters**
+### Closing Thoughts: Beyond Clusters
 
 Magik.run is not an orchestrator.
 It is not a cluster manager.

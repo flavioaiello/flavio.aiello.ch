@@ -6,28 +6,28 @@ When it comes to zero trust security, compute, communication and storage must be
 
 This blogpost reflects several pieces of work collected and reflected over time, started 2014 to protect a container based multi-tenant advisory service for banks - now known as cloud-native design - against security threats.
 
-## Motivation
+#### Motivation
 
 The perimeter based security model assumed at the time a fundamental physical degree of isolation in terms of compute, communication and storage. The sharing of infrastructure between trusted parties is a traditional approach to achieve economical benefits. Traditional sharing of software between trusted parties is also a well known pattern for non internet facing software, such as ERP systems.
 
-The sharing of hardware eg. virtualization introduced software defined computing that made blur traditional boundaries. With the later introduction of software defined networking and storage, the perimeter became virtual as well. As such, a physical representation fully disappeared.
+The sharing of hardware e.g. virtualization introduced software defined computing that made blur traditional boundaries. With the later introduction of software defined networking and storage, the perimeter became virtual as well. As such, a physical representation fully disappeared.
 
-The sharing of operating systems eg. containerization introduced a new level of software defined computing that made not only blur traditional boundaries, but also imposted a deterministic work pattern. Having now the software defined networking and storage terminated in the containers, the workload became portable and any form of perimeter dissolved.
+The sharing of operating systems, e.g. containerization, introduced a new level of software defined computing that made not only blur traditional boundaries, but also imposed a deterministic work pattern. Having now the software defined networking and storage terminated in the containers, the workload became portable and any form of perimeter dissolved.
 
 Containerization raised the utilization ratio of infrastructure even more efficient than virtualization. Furthermore it made cloud computing through identity federation and distributed stateless software design became reality. At the same time, containers mitigated lateral movement, if an attacker would breach the perimeter.
 
 ![Zero Trust compared to Perimeter](https://flavio.aiello.ch/assets/images/zerotrustperimeter.png)
 
-## Reality
+#### Reality
 With no fundamental physical degree of isolation, users working from anywhere and services being produced everywhere, there is no more crocodile pit nor a wall perimeter. Actual security concepts are now a zero trust model where security is addressed the same way for services as it is for users, regardless of the network. As such, traditional firewalls may still protect infrastructure, but portable services need to be securely run everywhere.
 
-## Consumerization
+#### Consumerization
 From its earliest days, low cost consumer technology or commodity hardware prevailed. The cloud native architecture is designed for commodity based computing. Thanks to portability, distributing multiple low cost stateless software instances across machines is load and fault tolerant without affecting the user experience. When it comes to stateful software, the same orchestration mechanism reschedules containers across multiple machines, so that workload quorums are provided alive.
 
-## Decoupling
+#### Decoupling
 Making software resilient and portable is based on loose coupling dependencies to the infrastructure with a high degree of cohesion within the services. This is achieved by read only containers that need to be rebuilt and distributed as required by vulnerabilities and their according risk. The imposed deterministic work pattern is required to roll out services repeatedly consistently through continuous runtime reconciliation. The deterministic work pattern makes the software lifecycle programmable and more secure, maintainable, reproducible and scalable, even more consistent and uniform between teams. As such, developers are enabled to produce secure software more efficiently.
 
-## Evolution
+#### Evolution
 The table below shows how the aspects of traditional infrastructure perimeter security model compared to zero trust security:
 
 |Perimeter|Zero Trust|
@@ -43,7 +43,7 @@ The table below shows how the aspects of traditional infrastructure perimeter se
 |Workloads are isolated physically.|Workloads are isolated logically.|
 
 
-## Security Principles
+#### Security Principles
 The outlined zero trust topology requires the following security principles:
 
 |Topic|Principle|
@@ -59,13 +59,13 @@ The outlined zero trust topology requires the following security principles:
 
 The implementation of above principles enable scaling while enforcing security and positively affecting the development experience.
 
-## Embrace the change
+#### Embrace the change
 
 Zero trust encompasses the protection of the physical infrastructure and the build of basic bricks like identity federation, declarative edge networking and service mesh to spark the development of secure portable reliable services. Physical representation of the user or service location has vanished and there is no more default safe place. Zero trust describes a standard approach to secure portable and decoupled services across traditional data centers, hybrid and public clouds. Zero trust is a traditional least privilege principle applied to services and data instead of network or infrastructure, thus providing isolation between workloads followed by automated vulnerability management, no implicit trusted communication and least privilege access control to data.
 
 As such, security is no more the last deliverable of a traditional project but already incorporated as main pillar during any stage of any creational process. Embracing zero trust makes economical sense due to the high degree of automation. The security principles provide benefits to the developers and security staff to continuously improve and deliver high standing data protection and reliable services.
 
-## Further Readings
+#### Further Readings
 
 *   [Zero Trust by Microsoft](https://www.microsoft.com/en-us/security/business/zero-trust)
 *   [BeyondCorp & BeyondProd by Google](https://cloud.google.com/beyondcorp)

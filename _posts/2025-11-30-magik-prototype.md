@@ -231,6 +231,81 @@ Then run the Workplane agent inside workloads and deploy manifests via the kubec
 
 ---
 
+# **Research Grounding & Related Work**
+
+Magik.run's architecture isn't theoretical speculation - it builds on decades of distributed systems research. Here's how the core design decisions map to established academic foundations.
+
+## **Decentralized Scheduling & Resource Markets**
+
+The ephemeral tender → bid → award scheduling model draws from:
+
+* **Sparrow** (SOSP 2013) - demonstrates that distributed, low-latency schedulers outperform centralized ones at scale using randomized, stateless task placement. [Paper](https://people.eecs.berkeley.edu/~matei/papers/2013/sosp_sparrow.pdf)
+* **Hopper** (SIGCOMM 2015) - extends decentralized scheduling to speculation-aware analytics clusters. [Paper](https://conferences.sigcomm.org/sigcomm/2015/pdf/papers/p379.pdf)
+* **Auction Protocols for Decentralized Scheduling** (Wellman et al.) - models resource allocation as auctions where jobs and machines exchange bids. [Paper](https://www.sciencedirect.com/science/article/pii/S0899825600908224)
+* **Tycoon** - distributed market-based resource allocation using bidding for fair, low-latency allocation. [Paper](https://arxiv.org/abs/cs/0404013)
+
+Kubernetes documents that production clusters are [practically limited to ~5,000 nodes](https://kubernetes.io/docs/setup/best-practices/cluster-large/) due to control-plane scalability. Magik's premise - "scale is limited by the control plane, so remove it" - is a logical extension.
+
+## **DHTs, Pub/Sub Overlays & Gossip**
+
+The Machine DHT and Workload DHT for decentralized discovery build on:
+
+* **Chord** (SIGCOMM 2001) - scalable peer-to-peer lookup with O(log N) routing. [Paper](https://sites.cs.ucsb.edu/~rich/class/cs293b-cloud/papers/chord.pdf)
+* **Kademlia** (IPTPS 2002) - DHT based on XOR metric for distributed key-value storage. [Paper](https://www.researchgate.net/publication/2492563_Kademlia_A_Peer-to-peer_Information_System_Based_on_the_XOR_Metric)
+* **Scribe** - large-scale multicast built on DHT overlays. [Paper](https://people.mpi-sws.org/~druschel/publications/Scribe-jsac.pdf)
+* **SWIM** - scalable, weakly-consistent infection-style membership protocol. [Paper](https://www.cs.cornell.edu/projects/Quicksilver/public_pdfs/SWIM.pdf)
+* **Gossip-Style Failure Detection** (Van Renesse et al.) - epidemic dissemination for membership and failure detection. [Paper](https://www.cs.cornell.edu/home/rvr/papers/GossipFD.pdf)
+
+## **CAP-Aware Design & Per-Workload State**
+
+The A/P Machineplane + C/P Workplane separation is grounded in:
+
+* **Gilbert & Lynch's CAP Proof** - formal proof that partitioned systems must trade consistency for availability. [Paper](https://www.cs.princeton.edu/courses/archive/spr22/cos418/papers/cap.pdf)
+* **Dynamo** (SOSP 2007) - Amazon's highly available key-value store with application-assisted conflict resolution. [Paper](https://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf)
+* **Bayou** (USENIX 1995) - weakly consistent replicated storage pushing conflict resolution to applications. [Paper](https://www.cs.utexas.edu/~lorenzo/corsi/cs380d/papers/p172-terry.pdf)
+* **Coda** - disconnected operation in distributed file systems. [Paper](https://people.eecs.berkeley.edu/~brewer/cs262b/Coda-TOCS.pdf)
+* **Raft** (USENIX ATC 2014) - understandable consensus for replicated logs. [Paper](https://raft.github.io/raft.pdf)
+
+Magik generalizes this pattern: every stateful workload is its own Dynamo/Bayou/Coda-style system; the fabric never pretends to maintain a globally consistent view.
+
+## **Zero Trust & Workload Identity**
+
+The separate machine/workload identity model implements:
+
+* **NIST SP 800-207** - Zero Trust Architecture principles for continuous identity-centric verification. [Paper](https://nvlpubs.nist.gov/nistpubs/specialpublications/NIST.SP.800-207.pdf)
+* **SPIFFE/SPIRE** - workload-centric, cryptographically verifiable identities decoupled from infrastructure. [Site](https://spiffe.io/)
+* **Istio Security Model** - per-workload certificates and mutual TLS for service-to-service authentication. [Docs](https://istio.io/latest/docs/concepts/security/)
+
+Magik bakes SPIFFE-like workload identity into the fabric while distinguishing machine IDs from workload IDs and making mTLS mandatory, not optional.
+
+## **Edge, IoT & Fog Computing**
+
+The stateless, transient machine model addresses:
+
+* **Fog Computing** (Bonomi et al., MCC 2012) - extending cloud to the edge with low latency, geographic distribution, and frequent churn. [Paper](https://conferences.sigcomm.org/sigcomm/2012/paper/mcc/p13.pdf)
+* **Resource Management in Fog/Edge Computing** (ACM CSUR 2019) - surveys emphasizing heterogeneity, resource constraints, and decentralized management. [Paper](https://pureadmin.qub.ac.uk/ws/files/168704756/Fog_EdgeResourceManagement_Survey_CSUR_2019.pdf)
+* **Dependability in Fog Computing** - challenges of failures, partitions, and placement strategies for distributed IoT. [Paper](https://www.science-gate.com/IJAAS/Articles/2021/2021-8-4/1021833ijaas202104010.pdf)
+
+## **Self-Healing & Autonomic Systems**
+
+The Workplane's autonomous remediation implements:
+
+* **The Vision of Autonomic Computing** (Kephart & Chess, IEEE 2003) - defines self-configuration, self-optimization, self-protection, and self-healing as core system goals. [Paper](https://www.researchgate.net/publication/2955831_The_Vision_Of_Autonomic_Computing)
+* **Autonomic Computing Surveys** - runtime monitoring, local fault detection, and automated recovery with minimal operator involvement. [Paper](https://www.cs.colostate.edu/~france/CS614/Readings/Readings2008/AdaptiveSoftware/a7-huebscher-autonomicSysSurvey.pdf)
+
+## **What's Novel**
+
+Every piece of Magik has strong backing in prior work. What appears novel is the *combination*:
+
+1. **Two fully separate planes** (Machineplane A/P, Workplane C/P) with their own DHTs and trust domains
+2. **Stateless tender → bid → award scheduling** where correctness is guaranteed by workload-level protocols
+3. **All infrastructure as disposable**, pushing durability entirely to workloads
+4. **Mutually authenticated, encrypted streams by default** at both infra and workload layers
+
+These choices don't contradict the literature; they combine its building blocks in a more extreme, mesh-native architecture.
+
+---
+
 # **Closing Thoughts: Beyond Clusters**
 
 Magik.run is not an orchestrator.

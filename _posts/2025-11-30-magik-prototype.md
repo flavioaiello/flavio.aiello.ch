@@ -5,7 +5,7 @@ In 2020, I published a short article on my blog titled simply [**Beemesh**](http
 It outlined a vision: a global, decentralized, zero-trust compute fabric that could run anywhere - cloud, edge, on-prem, or IoT - without the brittleness and bureaucracy of centralized control planes and their implicit risk. I described how such a system could use decentralized discovery, identity separation, and self-healing workloads to scale far beyond what Kubernetes- or cluster-centric designs allowed.
 
 Five years later, that vision is no longer a sketch on a napkin.
-**A prototype is now on the horizon, and it’s called Magik.run Global Computing.**
+**A prototype is now on the horizon, and it’s called Magik.run.**
 
 The idea is still the same: a fully decentralized, cryptographically isolated, identity-powered scale-out fabric designed for **tens of thousands of nodes**, network partitions, and unavoidable real-world chaos. This post revisits that original vision and explores why the system works the way it does, what problems it eliminates, and what it means for the future of distributed computing.
 

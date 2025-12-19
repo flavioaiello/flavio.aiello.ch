@@ -1,12 +1,13 @@
-# **From Vision to Reality - A Decentralized Fabric for Global Computing**
+# **From Vision to Reality - The Digital Sovereignty Fabric**
 
-In 2020, I published a short article on my blog titled simply **“Beemesh.”**
-It outlined a vision: a global, decentralized, zero-trust compute fabric that could run anywhere - cloud, edge, on-prem, or IoT - without the brittleness and bureaucracy of centralized control planes. I described how such a system could use peer-to-peer discovery, identity separation, and self-healing workloads to scale far beyond what Kubernetes- or cluster-centric designs allowed.
+In 2020, I published a short article on my blog titled simply [**Beemesh**](https://flavio.aiello.ch/beemesh/).
 
-Four years later, that vision is no longer a sketch on a napkin.
-**A prototype is now on the horizon, and it’s called Beemesh Global Computing.**
+It outlined a vision: a global, decentralized, zero-trust compute fabric that could run anywhere - cloud, edge, on-prem, or IoT - without the brittleness and bureaucracy of centralized control planes and their implicit risk. I described how such a system could use decentralized discovery, identity separation, and self-healing workloads to scale far beyond what Kubernetes- or cluster-centric designs allowed.
 
-The idea remains the same: a fully decentralized, cryptographically isolated, identity-powered scale-out fabric designed for **tens of thousands of nodes**, network partitions, and unavoidable real-world chaos. This post revisits that original vision and explores why the system works the way it does, what problems it eliminates, and what it means for the future of distributed computing.
+Five years later, that vision is no longer a sketch on a napkin.
+**A prototype is now on the horizon, and it’s called Magik.run Global Computing.**
+
+The idea is still the same: a fully decentralized, cryptographically isolated, identity-powered scale-out fabric designed for **tens of thousands of nodes**, network partitions, and unavoidable real-world chaos. This post revisits that original vision and explores why the system works the way it does, what problems it eliminates, and what it means for the future of distributed computing.
 
 ---
 
@@ -25,7 +26,7 @@ As clusters grow, this becomes a bottleneck:
 * Control-plane outages can paralyze entire environments
 * Edge and IoT environments simply can’t host such infrastructure
 
-Beemesh takes the opposite stance:
+Magik.run takes the opposite stance:
 
 > **If the control plane is the bottleneck, remove the control plane.**
 
@@ -34,7 +35,7 @@ No etcd.
 No Raft quorum.
 No global API server dependency.
 
-Instead, Beemesh is a:
+Instead, Magik.run is a:
 
 ### **Decentralized scale-out choreography fabric**
 
@@ -48,15 +49,15 @@ Machines are disposable. Their identity is ephemeral. They store no global truth
 
 Each workload carries its own state management, identity, and consistency boundaries.
 
-This separation is the heart of Beemesh.
+This separation is the heart of Magik.run.
 
 ---
 
-# **Why Beemesh Exists**
+# **Why Magik.run Exists**
 
 Legacy orchestrators struggle with:
 
-| Problem                                | Beemesh Solution                                          |
+| Problem                                | Magik.run Solution                                          |
 | -------------------------------------- | --------------------------------------------------------- |
 | Control-plane scaling limits           | No control plane - **fully decentralized choreography**   |
 | Infrastructure failures ripple outward | Machines are disposable; **state lives inside workloads** |
@@ -93,7 +94,7 @@ This was implicit in the 2020 blog post; now it is formalized in code and protoc
 
 In 2020, I wrote about a mesh where **identity travels with the workload** and trust originates *inside* the application boundary.
 
-Beemesh fulfills that vision:
+Magik.run fulfills that vision:
 
 ### **Machine identities**
 
@@ -115,7 +116,7 @@ This is true Zero Trust, not the marketing variety.
 # **Ephemeral Scheduling: The Anti-Scheduler**
 
 Traditional schedulers maintain global shared state and require consensus.
-Beemesh does neither.
+Magik.run does neither.
 
 Scheduling is ephemeral:
 
@@ -152,9 +153,9 @@ For stateful workloads, the Workplane’s Raft implementation provides leader el
 
 ---
 
-# **How Beemesh Compares**
+# **How Magik.run Compares**
 
-| Feature          | Kubernetes       | Nomad        | **Beemesh**                |
+| Feature          | Kubernetes       | Nomad        | **Magik.run**                |
 | ---------------- | ---------------- | ------------ | -------------------------- |
 | Control plane    | Required         | Required     | **None**                   |
 | Scheduling model | Centralized      | Centralized  | **Ephemeral, distributed** |
@@ -164,16 +165,16 @@ For stateful workloads, the Workplane’s Raft implementation provides leader el
 | Edge/IoT         | Limited          | Moderate     | **Excellent**              |
 | Security         | Add-ons for mTLS | Add-ons      | **Default**                |
 
-Beemesh doesn’t compete with Kubernetes or Nomad; it occupies a different architectural space - one suited to dynamic, unreliable, heterogeneous environments.
+Magik.run doesn’t compete with Kubernetes or Nomad; it occupies a different architectural space - one suited to dynamic, unreliable, heterogeneous environments.
 
 ---
 
-# **Where Beemesh Truly Shines**
+# **Where Magik.run Truly Shines**
 
 ### **Edge & IoT**
 
 Expect churn. Expect partitions. Expect devices to vanish.
-Beemesh does not mind.
+Magik.run does not mind.
 
 ### **Multicloud**
 
@@ -181,7 +182,7 @@ Run workloads across providers without control-plane coupling.
 
 ### **Air-gapped environments**
 
-Beemesh operates fully offline - no registry, cluster, or external identity provider required.
+Magik.run operates fully offline - no registry, cluster, or external identity provider required.
 
 ### **Global analytics & batch computing**
 
@@ -199,13 +200,13 @@ Millions of devices, unpredictable topology - ideal conditions for a decentraliz
 
 # **From Prototype Promise to Reality - The Loop Closes**
 
-When I wrote the initial Beemesh article in 2020, the technology required to realize the vision existed only in fragments.
+When I wrote the initial Magik.run article in 2020, the technology required to realize the vision existed only in fragments.
 QUIC was still maturing; libp2p’s QUIC support was experimental; Rust’s async networking ecosystem was young.
 
 Today, the ecosystem has caught up.
 And the promise - *“a prototype will be available soon”* - is no longer speculative.
 
-**Beemesh is that prototype, and more:
+**Magik.run is that prototype, and more:
 a complete, working architecture for global-scale decentralized computing.**
 
 The vision of 2020 was the seed.
@@ -213,11 +214,11 @@ The emerging 2024 implementation is the tree.
 
 ---
 
-# **Getting Started with Beemesh**
+# **Getting Started with Magik.run**
 
 ```bash
-git clone https://github.com/beemesh/beemesh.git
-cd beemesh
+git clone https://github.com/Magik.run/Magik.run.git
+cd Magik.run
 cargo build --release
 
 ./target/release/machineplane
@@ -225,14 +226,14 @@ cargo build --release
 
 Then run the Workplane agent inside workloads and deploy manifests via the kubectl-compatible API.
 
-**Documentation:** [https://docs.beemesh.io](https://docs.beemesh.io)
-**Source:** [https://github.com/beemesh/beemesh](https://github.com/beemesh/beemesh)
+**Documentation:** [https://docs.Magik.run.io](https://docs.Magik.run.io)
+**Source:** [https://github.com/Magik.run/Magik.run](https://github.com/Magik.run/Magik.run)
 
 ---
 
 # **Closing Thoughts: Beyond Clusters**
 
-Beemesh is not an orchestrator.
+Magik.run is not an orchestrator.
 It is not a cluster manager.
 It is not an incremental improvement on existing systems.
 
@@ -245,7 +246,7 @@ It is a **departure** - a realization that:
 
 …to continue relying on centralized control planes and fragile global consensus.
 
-Beemesh points toward a future where:
+Magik.run points toward a future where:
 
 * infrastructure is disposable
 * workloads are sovereign
@@ -255,5 +256,5 @@ Beemesh points toward a future where:
 
 It is the logical implementation to the idea published on my blog in 2020 - now refined, expanded, and becoming real.
 
-**Beemesh isn’t the future of clusters.
+**Magik.run isn’t the future of clusters.
 It’s the future beyond clusters.**
